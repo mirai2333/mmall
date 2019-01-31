@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    username: root
+    password: y973593589
+    url: jdbc:mysql://192.168.1.8:3306/mall?characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+  redis:
+    host: 192.168.1.8
+    port: 6379
+logging:
+  path: D:/mirai/IDEAworkSpace/mmall/my-log/
