@@ -2,6 +2,9 @@
 !.mvn/wrapper/maven-wrapper.jar
 /my-log/
 
+mvnw*
+/.mvn/
+
 ### STS ###
 .apt_generated
 .classpath
