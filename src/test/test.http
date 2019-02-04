@@ -9,3 +9,8 @@ GET http://localhost:8080/manage/category/add?categoryName=测试
 Accept: application/json
 
 ###
+
+GET http://localhost:8080/manage/product/26
+Accept: application/json
+
+###

@@ -5,8 +5,8 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -20,7 +20,7 @@ public class Product {
     private Integer productID;
 
     @Column(name = "category_id")
-    @NotBlank
+    @NotNull
     private Integer categoryID;
 
     @Column(name = "name")
@@ -41,7 +41,7 @@ public class Product {
     private BigDecimal productPrice;
 
     @Column(name = "stock")
-    @NotBlank
+    @NotNull
     private Integer productStock;
 
     @Column(name = "status")
@@ -52,4 +52,16 @@ public class Product {
     private Date createTime;
     @Column(name = "update_time")
     private Date updateTime;
+
+    /**JPA产品列表构造器*/
+    public Product(Integer productID, Integer categoryID, String productName, String productSubtitle,
+                   String productMainImage, BigDecimal productPrice, Integer productStatus) {
+        this.productID = productID;
+        this.categoryID = categoryID;
+        this.productName = productName;
+        this.productSubtitle = productSubtitle;
+        this.productMainImage = productMainImage;
+        this.productPrice = productPrice;
+        this.productStatus = productStatus;
+    }
 }

@@ -9,5 +9,9 @@ spring:
   redis:
     host: 192.168.1.8
     port: 6379
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
 logging:
   path: D:/mirai/IDEAworkSpace/mmall/my-log/
