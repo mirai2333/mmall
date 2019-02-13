@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.Map;
 
 
 @Service
@@ -42,8 +43,14 @@ public class ProductService {
                 .map(ServerResponse::createBySuccess)
                 .orElse(ServerResponse.createByErrorMsg("产品不存在！"));
     }
-    public ServerResponse<Page<Product>> selectProductList(Pageable pageable){
+
+    public ServerResponse<Page<Product>> selectProductList(Pageable pageable) {
         Page<Product> productPage = productRepository.findProductList(pageable);
+        return ServerResponse.createBySuccess(productPage);
+    }
+
+    public ServerResponse<Page<Product>> searchProductList(String productName, Pageable pageable) {
+        Page<Product> productPage = productRepository.searchProductList(productName, pageable);
         return ServerResponse.createBySuccess(productPage);
     }
 }

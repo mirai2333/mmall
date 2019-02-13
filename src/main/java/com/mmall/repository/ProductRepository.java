@@ -22,9 +22,13 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query(value = "UPDATE Product SET productStatus = :status WHERE productID = :id")
     void updateProductStatus(@Param("status") Integer status, @Param("id") Integer id);
 
-    @Query(value =
-            "SELECT " +
+    @Query(value = "SELECT " +
             "new Product(productID,categoryID,productName,productSubtitle,productMainImage,productPrice,productStatus) " +
             "FROM Product")
     Page<Product> findProductList(Pageable pageable);
+
+    @Query(value = "SELECT " +
+            "new Product(p.productID,p.categoryID,p.productName,p.productSubtitle,p.productMainImage,p.productPrice,p.productStatus) " +
+            "FROM Product p WHERE p.productName LIKE :name")
+    Page<Product> searchProductList(@Param("name") String name, Pageable pageable);
 }

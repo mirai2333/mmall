@@ -1,11 +1,10 @@
 package com.mmall.repository;
-
-import com.mmall.pojo.Product;
-import com.mmall.pojo.vo.ProductListVo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -21,13 +20,15 @@ public class ProductRepositoryTest {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Test
     public void test() {
-        Page<Product> page = productRepository.
-                findProductList(PageRequest.of(0, 10, Sort.Direction.DESC, "createTime"));
-        List<Product> list = page.getContent();
-        System.out.println(list);
+        String[] names = applicationContext.getBeanDefinitionNames();
+        for (String name : names) {
+            System.out.println(name);
+        }
 
     }
 }
