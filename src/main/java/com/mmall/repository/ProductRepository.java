@@ -31,4 +31,19 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             "new Product(p.productID,p.categoryID,p.productName,p.productSubtitle,p.productMainImage,p.productPrice,p.productStatus) " +
             "FROM Product p WHERE p.productName LIKE :name")
     Page<Product> searchProductList(@Param("name") String name, Pageable pageable);
+
+    /**
+     * 前端查找产品列表
+     * @param categoryIdList 夫分类ID和其所有子分类的ID列表
+     * @param keywords 产品名称关键字
+     * @param pageable 分页
+     * @return 产品列表
+     */
+    Page<Product> findAllByCategoryIDInAndProductNameLike(List<Integer> categoryIdList, String keywords, Pageable pageable);
+
+    Page<Product> findAllByCategoryIDIn(List<Integer> categoryIdList, Pageable pageable);
+
+    Page<Product> findAllByProductNameLike(String keywords, Pageable pageable);
+
+    Page<Product> findAllByProductStatus(Integer productStatus, Pageable pageable);
 }

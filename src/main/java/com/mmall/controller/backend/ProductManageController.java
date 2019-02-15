@@ -8,13 +8,9 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.ServletContext;
-import java.io.IOException;
 
 
 @RestController
@@ -61,7 +57,7 @@ public class ProductManageController {
      */
     @GetMapping("/{productID}")
     public ServerResponse manageGetProductDetail(@PathVariable Integer productID) {
-        return productService.manageGetProductDetail(productID);
+        return productService.getProductDetail(productID);
     }
 
     /**

@@ -18,4 +18,12 @@ public class Const {
         int DELETE = 3;
     }
 
+    /**前端产品列表搜索*/
+    public interface PortalListStatus{
+        int ALL = 0;
+        int NONE = 1;
+        int CATEGORY = 2;
+        int KEYWORDS = 3;
+    }
+
 }

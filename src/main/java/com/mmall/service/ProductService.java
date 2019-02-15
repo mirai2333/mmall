@@ -1,5 +1,6 @@
 package com.mmall.service;
 
+import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.Product;
 import com.mmall.repository.ProductRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 
@@ -38,7 +40,7 @@ public class ProductService {
         return ServerResponse.createBySuccess();
     }
 
-    public ServerResponse<Product> manageGetProductDetail(int productID) {
+    public ServerResponse<Product> getProductDetail(int productID) {
         return productRepository.findById(productID)
                 .map(ServerResponse::createBySuccess)
                 .orElse(ServerResponse.createByErrorMsg("产品不存在！"));
@@ -53,4 +55,18 @@ public class ProductService {
         Page<Product> productPage = productRepository.searchProductList(productName, pageable);
         return ServerResponse.createBySuccess(productPage);
     }
+
+    public ServerResponse<Page<Product>> portalProductList(int status, List<Integer> categoryIdList, String keywords, Pageable pageable) {
+        switch (status) {
+            case Const.PortalListStatus.ALL:
+                return ServerResponse.createBySuccess(productRepository.findAllByCategoryIDInAndProductNameLike(categoryIdList, keywords, pageable));
+            case Const.PortalListStatus.CATEGORY:
+                return ServerResponse.createBySuccess(productRepository.findAllByCategoryIDIn(categoryIdList, pageable));
+            case Const.PortalListStatus.KEYWORDS:
+                return ServerResponse.createBySuccess(productRepository.findAllByProductNameLike(keywords, pageable));
+            default:
+                return ServerResponse.createBySuccess(productRepository.findAll(pageable));
+        }
+    }
+
 }
