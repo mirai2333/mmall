@@ -17,6 +17,10 @@ public class Const {
         int OFF_SELL = 2;
         int DELETE = 3;
     }
+    public interface CartStatus{
+        int CHECKED = 1;
+        int UN_CHECKED = 0;
+    }
 
     /**前端产品列表搜索*/
     public interface PortalListStatus{
