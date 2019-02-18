@@ -20,6 +20,11 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "mmall_cart")
+@NamedEntityGraph(name = "cart.all", attributeNodes = @NamedAttributeNode(value = "product", subgraph = "product.slim"),
+        subgraphs = @NamedSubgraph(name = "product.slim", attributeNodes = {@NamedAttributeNode("productName"),
+                @NamedAttributeNode("productSubtitle"), @NamedAttributeNode("productMainImage"),
+                @NamedAttributeNode("productPrice"), @NamedAttributeNode("productStatus"),
+                @NamedAttributeNode("productStock")}))
 @Data
 public class Cart {
     @Id
@@ -28,7 +33,7 @@ public class Cart {
     private Integer cartId;
     @Column(name = "user_id")
     private Integer userId;
-    @Column(name = "product_id")
+    @Column(name = "product_id", insertable = false, updatable = false)
     private Integer productId;
     @Column(name = "quantity")
     private Integer quantity;
@@ -38,4 +43,8 @@ public class Cart {
     private Date createTime;
     @Column(name = "update_time")
     private Date updateTime;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
 }

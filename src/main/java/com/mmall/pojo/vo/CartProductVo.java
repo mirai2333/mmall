@@ -34,6 +34,5 @@ public class CartProductVo {
     private Integer productStock;
     //购物车字段
     private BigDecimal productTotalPrice;
-    private String limitQuantity;
 
 }

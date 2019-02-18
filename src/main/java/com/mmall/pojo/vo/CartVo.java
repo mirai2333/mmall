@@ -21,6 +21,6 @@ import java.util.List;
 @Data
 public class CartVo {
     private List<CartProductVo> cartProductVoList;
-    private BigDecimal cartTotalPrice;
+    private BigDecimal cartTotalPrice = BigDecimal.ZERO;
     private Boolean allChecked;
 }

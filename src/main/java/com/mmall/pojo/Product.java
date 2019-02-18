@@ -31,9 +31,12 @@ public class Product {
     private String productSubtitle;
     @Column(name = "main_image")
     private String productMainImage;
+
     @Column(name = "sub_images")
+    @Lob
     private String productSubImages;
     @Column(name = "detail")
+    @Lob
     private String productDetail;
 
     @Column(name = "price")
@@ -52,6 +55,14 @@ public class Product {
     private Date createTime;
     @Column(name = "update_time")
     private Date updateTime;
+
+    public Product(@NotNull Integer productID) {
+        this.productID = productID;
+    }
+
+    public Product() {
+    }
+
 
     /**JPA产品列表构造器*/
     public Product(Integer productID, Integer categoryID, String productName, String productSubtitle,
