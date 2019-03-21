@@ -33,9 +33,11 @@ public class UserService {
         if (usernameCount > 0) {
             return ServerResponse.createByErrorMsg("用户名已存在");
         }
-        int emailCount = userRepository.countUserByEmail(user.getEmail());
-        if (emailCount > 0) {
-            return ServerResponse.createByErrorMsg("邮箱已存在");
+        if (!StringUtils.isEmpty(user.getEmail())){
+            int emailCount = userRepository.countUserByEmail(user.getEmail());
+            if (emailCount > 0) {
+                return ServerResponse.createByErrorMsg("邮箱已存在");
+            }
         }
         user.setRole(Const.Role.ROLE_CUSTOMER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));

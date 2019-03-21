@@ -25,3 +25,5 @@ ftp:
     remotePath: image  #FTP根目录下的目录，如果为空就表示在FTP根目录下
   username: ftpuser
   password: y973593589
+server:
+  port: 8888

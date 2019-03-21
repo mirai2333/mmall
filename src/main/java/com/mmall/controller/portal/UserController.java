@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ServerResponse<String> registerUser(@Valid User user,
+    public ServerResponse<String> registerUser(@RequestBody @Valid User user,
                                                BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ServerResponse.createByErrorMsg(Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage());
